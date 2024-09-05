@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import './App.css';
 import { Auth } from './components/Auth';
 import { db, auth, storage } from './config/firebase';
 import { getDocs, collection, addDoc,deleteDoc, updateDoc, doc } from 'firebase/firestore';
@@ -34,7 +32,6 @@ function App() {
         ...doc.data(),
         id: doc.id,
       }));
-      // console.log(filteredData);
       setMovieList(filteredData);
     } catch (err) {
       console.error(err);
@@ -73,7 +70,7 @@ function App() {
   // Télécharger un fichier
   const telecharger = async()=>{
     if(!fileUpload){return};
-    const filesFolderRef = ref(storage,'projectFiles/${date}');
+    const filesFolderRef = ref(storage,`projectFiles/${date}`);
     try{
       await uploadBytes(filesFolderRef, fileUpload);
     }catch (err){
@@ -81,10 +78,13 @@ function App() {
     }
   }
 
+  // console.log('User : ',auth.currentUser.uid);
+
   return (
     <div className='cours__firebase'>
       <h1>Cours Firease</h1>
       <h2>Authentification</h2>
+      {(auth?.currentUser?.uid? <h2>Connecté</h2> : <h2>Déconnecté</h2>)}
       <Auth/>
 <hr />
 {/* Nouveau film */}
