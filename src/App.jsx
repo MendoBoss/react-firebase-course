@@ -82,7 +82,7 @@ function App() {
 
   return (
     <div className='cours__firebase'>
-      <h1>Cours Firease</h1>
+      <h1>Cours Firebase</h1>
       <h2>Authentification</h2>
       {(auth?.currentUser?.uid? <h2>Connecté</h2> : <h2>Déconnecté</h2>)}
       <Auth/>
